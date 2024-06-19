@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Khodam</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Creepster&display=swap">
+    <style>
+        body {
+            font-family: 'Creepster', cursive;
+            background-color: #000;
+            color: #f8f8ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://images.unsplash.com/photo-1507646227500-4d5273759334?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGhhdW50ZWR8ZW58MHx8fHwxNjIxNjAyMjA2&ixlib=rb-1.2.1&q=80&w=1080');
+            background-size: cover;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            color: #fff;
+            margin-top: auto;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ff0000;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #ffdddd;
+        }
+        input {
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 20px;
+            border: 1px solid #ff0000;
+            border-radius: 5px;
+            width: 80%;
+            background-color: #333;
+            color: #fff;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            background-color: #ff0000;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ffdddd;
+            text-shadow: 2px 2px #ff0000;
+        }
+        footer {
+            margin-top: auto;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            background-color: rgba(13, 13, 13, 0.7);
+            padding: 10px 0;
+        }
+        footer p {
+            margin: 0;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cek Khodam</h1>
+        <p>Masukkan nama Anda:</p>
+        <input type="text" id="nameInput" placeholder="Nama Anda">
+        <button id="checkButton">Cek sekarang</button>
+        <div id="result"></div>
+    </div>
+    <footer>
+        <p>Created By : Riko Randika</p>
+    </footer>
+    <script>
+        document.getElementById('checkButton').addEventListener('click', function() {
+            const name = document.getElementById('nameInput').value;
+            if (!name) {
+                document.getElementById('result').textContent = 'Silakan masukkan nama Anda.';
+                return;
+            }
+
+            const khodams = [
+                'Macan Putih', 'Naga Biru', 'Garuda Emas', 'Harimau Hitam', 'Kuda Perkasa', 'Elang Merah', 
+                'Singa Emas', 'Serigala Putih', 'Rusa Hijau', 'Gajah Besi', 'Buaya Perunggu', 'Kera Sakti', 
+                'Burung Hantu', 'Ular Sanca', 'Rajawali Emas', 'Rubah Api', 'Ikan Mas', 'Kijang Perak', 
+                'Kura-kura Hijau', 'Kakatua Putih', 'Lebah Emas', 'Anjing Hitam', 'Kucing Merah', 'Tikus Besi', 
+                'Iguana Biru', 'Jangkrik Emas', 'Katak Merah', 'Gurita Ungu', 'Singa Putih', 'Kuda Laut Biru', 
+                'Hiu Putih', 'Kuda Nil Perak', 'Kerbau Hitam', 'Jerapah Emas', 'Kumbang Merah', 'Kupu-kupu Biru', 
+                'Kelelawar Hitam', 'Singa Laut', 'Ikan Paus Biru', 'Banteng Merah', 'Kambing Putih', 'Burung Merak', 
+                'Merpati Emas', 'Bebek Hitam', 'Burung Hantu Merah', 'Ayam Jago', 'Burung Elang', 'Laba-laba Merah', 
+                'Kalajengking Hitam', 'Ikan Pari Biru', 'Burung Hantu Putih', 'Serigala Hitam', 'Singa Merah', 
+                'Gajah Merah', 'Rusa Perak', 'Ular Kobra', 'Macan Tutul', 'Kuda Biru', 'Rajawali Putih', 
+                'Kijang Emas', 'Burung Hantu Biru', 'Rubah Perak', 'Kura-kura Merah', 'Kakatua Merah', 
+                'Ikan Koi', 'Lebah Merah', 'Anjing Putih', 'Kucing Hitam', 'Tikus Merah', 'Iguana Hijau', 
+                'Jangkrik Biru', 'Katak Emas', 'Gurita Hitam', 'Singa Biru', 'Kuda Laut Putih', 'Hiu Hitam', 
+                'Kuda Nil Merah', 'Kerbau Emas', 'Jerapah Perak', 'Kumbang Hitam', 'Kupu-kupu Merah', 
+                'Kelelawar Merah', 'Singa Laut Hitam', 'Ikan Paus Putih', 'Banteng Hitam', 'Kambing Merah', 
+                'Burung Merak Emas', 'Merpati Putih', 'Bebek Merah', 'Burung Hantu Hijau', 'Ayam Jantan', 
+                'Burung Elang Merah', 'Laba-laba Biru', 'Kalajengking Merah', 'Ikan Pari Hitam', 'Burung Hantu Emas'
+            ];
+
+            const randomIndex = Math.floor(Math.random() * khodams.length);
+            const khodamTerdeteksi = khodams[randomIndex];
+
+            const pesan = [
+                `Ya, ${name}, di dalam dirimu ada khodam ${khodamTerdeteksi}.`,
+                `Tidak, ${name}, tidak ada khodam di dalam dirimu.`,
+                `Khodam ${khodamTerdeteksi} sedang bersemayam di dalam dirimu, ${name}.`,
+                `Kamu bersih dari khodam, ${name}.`,
+                `Khodam ${khodamTerdeteksi} berada di dalam dirimu, ${name}, jaga baik-baik!`,
+                `Tidak dapat mendeteksi khodam di dalam dirimu, ${name}. Coba lagi.`
+            ];
+
+            const randomPesanIndex = Math.floor(Math.random() * pesan.length);
+            const hasilTeks = pesan[randomPesanIndex];
+
+            document.getElementById('result').textContent = hasilTeks;
+        });
+    </script>
+</body>
+</html>
